@@ -1,22 +1,25 @@
-# Key Learning Points to Focus On
+# Week 1: Java 21 Core Features
 
-## Virtual Threads
+## Core Topics
 
-How they differ from platform threads
-When to use them
-Performance characteristics
-Structured concurrency patterns
+- [Virtual Threads & Concurrency](../03_virtual_threads.md)
+- Pattern Matching
+- Record Patterns
+- String Templates
+- Structured Concurrency
 
-## Pattern Matching
+## Exercises
 
-Using switch expressions with records
-Type patterns in instanceof
-Record patterns in switch
-Guards in pattern matching
+1. [Basic HTTP Server Setup](01_exercise.md)
+2. [Simple CRUD Endpoints](02_exercise.md)
+3. [Concurrent Request Handling](03_exercise.md)
+4. [Pattern Matching Implementation](04_exercise.md)
 
-## Records
+## Project Setup
 
-Immutable data carriers
-Pattern matching with records
-Compact constructors
-Static factory methods
+- [Initial Project Structure](initial_code_structure.md)
+
+## Additional Resources
+
+- [Modern Java HTTP Server Guide](../01_modern_java_http_server.md)
+- [Record Patterns and DTOs](../02_record_pattern_and_dto.md)
