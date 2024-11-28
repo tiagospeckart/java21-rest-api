@@ -1,23 +1,34 @@
 package com.example.restapi;
 
-import com.example.restapi.server.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.example.restapi.server.ApplicationServer;
+import com.example.restapi.config.ServerConfig;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         try {
-            // Create and start server on port 8080
-            Server server = new Server(8080);
+            ServerConfig config = new ServerConfig(8080);
+            ApplicationServer server = new ApplicationServer(config);
+
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                logger.info("Shutting down server...");
+                server.stop();
+            }));
+
             server.start();
-
-            System.out.println("Server started on port 8080");
-            System.out.println("Visit http://localhost:8080/health to check server status");
-
-            // Keep the main thread alive
+            logger.info("Server started on port {}", config.port());
             Thread.currentThread().join();
 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            logger.error("Server was interrupted", e);
+            System.exit(1);
         } catch (Exception e) {
-            System.err.println("Server failed to start: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Server failed to start: {}", e.getMessage(), e);
+            System.exit(1);
         }
     }
 }
